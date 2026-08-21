@@ -1,0 +1,40 @@
+import {
+  Globe,
+  Smartphone,
+  BrainCircuit,
+  Server,
+  PenTool,
+  Cloud,
+  Workflow,
+  ShieldCheck,
+  Database,
+  Compass,
+  Code2,
+  Boxes,
+  GitBranch,
+  Cpu,
+  LayoutGrid,
+  Layers,
+  type LucideIcon,
+} from "lucide-react";
+
+export const icons: Record<string, LucideIcon> = {
+  globe: Globe,
+  smartphone: Smartphone,
+  brain: BrainCircuit,
+  server: Server,
+  pen: PenTool,
+  cloud: Cloud,
+  workflow: Workflow,
+  shield: ShieldCheck,
+  database: Database,
+  compass: Compass,
+  code: Code2,
+  boxes: Boxes,
+  git: GitBranch,
+  cpu: Cpu,
+  grid: LayoutGrid,
+  layers: Layers,
+};
+
+export type IconKey = keyof typeof icons;

@@ -1,0 +1,47 @@
+<svg width="120" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Six Stack Solutions mark">
+  <defs>
+    <linearGradient id="ssL1" x1="14" y1="5" x2="106" y2="51" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B86FF"/><stop offset="1" stop-color="#1E63EA"/>
+    </linearGradient>
+    <linearGradient id="ssL2" x1="14" y1="21" x2="106" y2="67" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3179E9"/><stop offset="1" stop-color="#2160C6"/>
+    </linearGradient>
+    <linearGradient id="ssL3" x1="14" y1="37" x2="106" y2="83" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2C8FCE"/><stop offset="1" stop-color="#2277AE"/>
+    </linearGradient>
+    <linearGradient id="ssL4" x1="14" y1="53" x2="106" y2="99" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2AA6AE"/><stop offset="1" stop-color="#1E8B92"/>
+    </linearGradient>
+    <linearGradient id="ssL5" x1="14" y1="69" x2="106" y2="115" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8598A8"/><stop offset="1" stop-color="#647B8C"/>
+    </linearGradient>
+    <linearGradient id="ssL6" x1="14" y1="85" x2="106" y2="131" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C4D0DB"/><stop offset="1" stop-color="#A6B5C3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Layer 6 (bottom) -->
+  <path d="M60 108 L106 108 L106 115 L60 138 L14 115 L14 108 Z" fill="#9DACBB"/>
+  <path d="M60 85 L106 108 L60 131 L14 108 Z" fill="url(#ssL6)"/>
+  <!-- Layer 5 -->
+  <path d="M60 92 L106 92 L106 99 L60 122 L14 99 L14 92 Z" fill="#5E7486"/>
+  <path d="M60 69 L106 92 L60 115 L14 92 Z" fill="url(#ssL5)"/>
+  <!-- Layer 4 (teal) -->
+  <path d="M60 76 L106 76 L106 83 L60 106 L14 83 L14 76 Z" fill="#1B848B"/>
+  <path d="M60 53 L106 76 L60 99 L14 76 Z" fill="url(#ssL4)"/>
+  <!-- Layer 3 -->
+  <path d="M60 60 L106 60 L106 67 L60 90 L14 67 L14 60 Z" fill="#1F6EA4"/>
+  <path d="M60 37 L106 60 L60 83 L14 60 Z" fill="url(#ssL3)"/>
+  <!-- Layer 2 -->
+  <path d="M60 44 L106 44 L106 51 L60 74 L14 51 L14 44 Z" fill="#1E59BC"/>
+  <path d="M60 21 L106 44 L60 67 L14 44 Z" fill="url(#ssL2)"/>
+  <!-- Layer 1 (top, bright blue) -->
+  <path d="M60 28 L106 28 L106 35 L60 58 L14 35 L14 28 Z" fill="#1A5AD8"/>
+  <path d="M60 5 L106 28 L60 51 L14 28 Z" fill="url(#ssL1)"/>
+
+  <!-- Squared "S" mapped onto the top face via isometric transform -->
+  <g transform="matrix(46,-23,46,23,14,28)">
+    <path d="M0.74 0.30 L0.40 0.30 A0.055 0.055 0 0 0 0.40 0.47 L0.60 0.47 A0.055 0.055 0 0 1 0.60 0.64 L0.26 0.64"
+          fill="none" stroke="#F4F8FF" stroke-width="0.135" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
