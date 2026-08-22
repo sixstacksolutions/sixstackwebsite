@@ -2,18 +2,21 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { WorkArt, type WorkKind } from "@/components/ui/WorkArt";
+import { type WorkKind } from "@/components/ui/WorkArt";
+import { SmartImage } from "@/components/ui/SmartImage";
 import { Reveal } from "@/components/ui/Reveal";
 
-type Industry = { name: string; desc: string; kind: WorkKind };
+// `slug` keys the photograph at /images/industries/<slug>.jpg; `kind` stays as
+// the fallback illustration SmartImage draws if that file is ever missing.
+type Industry = { name: string; desc: string; kind: WorkKind; slug: string };
 
 const industries: Industry[] = [
-  { name: "FinTech", desc: "Secure payments, dashboards and reconciliation platforms.", kind: "consulting" },
-  { name: "Healthcare", desc: "Compliant patient and clinical software, powered by data.", kind: "ai" },
-  { name: "E-commerce", desc: "Fast storefronts and checkout built to convert.", kind: "ecommerce" },
-  { name: "Logistics", desc: "Real-time tracking, dispatch and fleet operations.", kind: "automation" },
-  { name: "Education", desc: "Learning platforms and portals that scale to thousands.", kind: "web" },
-  { name: "Real Estate", desc: "Marketplaces, listings and customer portals.", kind: "web" },
+  { name: "FinTech", desc: "Secure payments, dashboards and reconciliation platforms.", kind: "consulting", slug: "fintech" },
+  { name: "Healthcare", desc: "Compliant patient and clinical software, powered by data.", kind: "ai", slug: "healthcare" },
+  { name: "E-commerce", desc: "Fast storefronts and checkout built to convert.", kind: "ecommerce", slug: "ecommerce" },
+  { name: "Logistics", desc: "Real-time tracking, dispatch and fleet operations.", kind: "automation", slug: "logistics" },
+  { name: "Education", desc: "Learning platforms and portals that scale to thousands.", kind: "web", slug: "education" },
+  { name: "Real Estate", desc: "Marketplaces, listings and customer portals.", kind: "web", slug: "real-estate" },
 ];
 
 export function Industries() {
@@ -39,14 +42,35 @@ export function Industries() {
             <div className="sticky top-28 aspect-[4/3] overflow-hidden rounded-2xl shadow-card">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={industries[active].kind + active}
+                  key={industries[active].slug}
                   initial={{ opacity: 0, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  className="h-full w-full"
+                  className="relative h-full w-full"
                 >
-                  <WorkArt kind={industries[active].kind} label={industries[active].name} />
+                  <SmartImage
+                    src={`/images/industries/${industries[active].slug}.jpg`}
+                    alt={industries[active].name}
+                    kind={industries[active].kind}
+                    label={industries[active].name}
+                    className="saturate-[0.8] contrast-[1.04]"
+                  />
+                  {/* Same brand wash as the services panel, so the two sets
+                      of photography read as one system rather than two. */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-brand-700/30 mix-blend-color"
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <span className="font-display text-lg font-bold text-white">
+                      {industries[active].name}
+                    </span>
+                  </div>
                 </motion.div>
               </AnimatePresence>
             </div>
