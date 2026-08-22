@@ -1,15 +1,31 @@
 import Link from "next/link";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { SmartImage } from "@/components/ui/SmartImage";
+import { type WorkKind } from "@/components/ui/WorkArt";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { services } from "@/data/services";
 
-const accents: Array<"blue" | "teal" | "navy" | "indigo"> = ["teal", "blue", "indigo", "navy"];
+/**
+ * Which illustration a service falls back to when no photo exists at
+ * /images/services/<slug>.jpg. Keyed by slug so a renamed service fails
+ * loudly here rather than silently drawing the wrong motif.
+ */
+const kindBySlug: Record<string, WorkKind> = {
+  "web-development": "web",
+  "mobile-development": "mobile",
+  "ai-development": "ai",
+  "backend-development": "backend",
+  "ui-ux-design": "design",
+  "cloud-devops": "cloud",
+  automation: "automation",
+  cybersecurity: "security",
+  "software-consulting": "consulting",
+};
 
 export function ServicesPreview() {
   const featured = services.slice(0, 4);
   return (
-    <section className="relative overflow-hidden bg-mint py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-surface-50 py-20 sm:py-28">
       <div className="container-x">
         <Reveal>
           <span className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-600">
@@ -29,7 +45,7 @@ export function ServicesPreview() {
         </Reveal>
 
         <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((s, i) => (
+          {featured.map((s) => (
             <StaggerItem key={s.slug} className="h-full">
               <Link
                 href={`/services/${s.slug}`}
@@ -39,7 +55,8 @@ export function ServicesPreview() {
                   <SmartImage
                     src={`/images/services/${s.slug}.jpg`}
                     alt={s.title}
-                    accent={accents[i % accents.length]}
+                    kind={kindBySlug[s.slug] ?? "web"}
+                    label={s.title}
                   />
                 </div>
                 <div
