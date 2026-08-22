@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { projects, categories } from "@/data/projects";
 import { cn } from "@/lib/cn";
@@ -14,6 +16,30 @@ export function ProjectsGrid() {
     active === "All"
       ? projects
       : projects.filter((p) => p.tags.includes(active));
+
+  // Nothing published yet: category filters that filter nothing are just noise,
+  // so the whole control row is withheld until there is something to sort.
+  if (projects.length === 0) {
+    return (
+      <div className="rounded-2xl border border-dashed border-line-strong bg-white px-6 py-20 text-center">
+        <p className="font-display text-xl font-semibold text-ink">
+          Case studies coming soon
+        </p>
+        <p className="lead mx-auto mt-3 max-w-lg">
+          We&apos;re preparing detailed write-ups of our recent work. If you&apos;d
+          like to see examples relevant to your industry, get in touch and
+          we&apos;ll share them with you directly.
+        </p>
+        <Link
+          href="/contact"
+          className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-7 py-4 text-base font-semibold text-white shadow-[0_16px_40px_-16px_rgba(22,119,255,0.65)] transition-all duration-300 ease-premium hover:-translate-y-0.5 hover:bg-brand-700"
+        >
+          Request examples
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div>

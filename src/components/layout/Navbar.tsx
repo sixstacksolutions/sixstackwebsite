@@ -124,7 +124,7 @@ export function Navbar() {
               href="/contact"
               className="group inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_30px_-12px_rgba(22,119,255,0.6)] transition-all duration-300 ease-premium hover:-translate-y-0.5 hover:bg-brand-700"
             >
-              Let&apos;s Talk
+              Let&apos;s Connect
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Link>
           </div>
@@ -222,7 +222,7 @@ export function Navbar() {
                 href="/contact"
                 className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-4 text-base font-semibold text-white"
               >
-                Let&apos;s Talk
+                Let&apos;s Connect
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>

@@ -36,7 +36,7 @@ export function HeroStack() {
           className="relative w-[46%] max-w-[220px] sm:w-[48%]"
           style={{ aspectRatio: "298 / 484" }}
           animate={reduce ? undefined : { y: [0, -14, 0] }}
-          transition={reduce ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
+          transition={reduce ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.85 }}
         >
           {order.map((idx, step) => (
             <motion.img
@@ -48,10 +48,14 @@ export function HeroStack() {
               className="absolute inset-0 h-full w-full drop-shadow-[0_20px_40px_rgba(22,119,255,0.18)]"
               initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: -260 }}
               animate={{ opacity: 1, y: 0 }}
+              // Snappy on purpose. This replays on every return to the home
+              // page, so a leisurely build that reads well once reads as a
+              // slow page on the fourth visit. Last plate now lands at ~0.55s
+              // instead of ~1.55s, which keeps the effect and loses the wait.
               transition={
                 reduce
                   ? undefined
-                  : { duration: 0.6, delay: 0.15 + step * 0.16, ease: [0.22, 1, 0.36, 1] }
+                  : { duration: 0.42, delay: 0.05 + step * 0.07, ease: [0.22, 1, 0.36, 1] }
               }
             />
           ))}
