@@ -4,18 +4,24 @@ import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { WorkArt, type WorkKind } from "@/components/ui/WorkArt";
+import { type WorkKind } from "@/components/ui/WorkArt";
+import { SmartImage } from "@/components/ui/SmartImage";
 import { Reveal } from "@/components/ui/Reveal";
 
-type Row = { no: string; title: string; desc: string; href: string; kind: WorkKind };
+/**
+ * `slug` drives the preview photo at /images/services/<slug>.jpg. Until that
+ * file exists SmartImage falls back to the generated WorkArt for `kind`, so
+ * photos can be added one at a time without ever showing a broken image.
+ */
+type Row = { no: string; title: string; desc: string; href: string; kind: WorkKind; slug: string };
 
 const rows: Row[] = [
-  { no: "01", title: "Software Development", desc: "Scalable web, mobile and custom software, from idea to production.", href: "/services/web-development", kind: "web" },
-  { no: "02", title: "AI & Data", desc: "Turn data into intelligent products and automated decisions.", href: "/services/ai-development", kind: "ai" },
-  { no: "03", title: "Cloud & DevOps", desc: "Infrastructure and delivery pipelines built for scale and reliability.", href: "/services/cloud-devops", kind: "cloud" },
-  { no: "04", title: "Product Design", desc: "Digital experiences people actually enjoy using.", href: "/services/ui-ux-design", kind: "design" },
-  { no: "05", title: "Cybersecurity", desc: "Protect applications, infrastructure and data by design.", href: "/services/cybersecurity", kind: "security" },
-  { no: "06", title: "Automation", desc: "Remove repetitive work with reliable, monitored workflows.", href: "/services/automation", kind: "automation" },
+  { no: "01", title: "Software Development", desc: "Scalable web, mobile and custom software, from idea to production.", href: "/services/web-development", kind: "web", slug: "web-development" },
+  { no: "02", title: "AI & Data", desc: "Turn data into intelligent products and automated decisions.", href: "/services/ai-development", kind: "ai", slug: "ai-development" },
+  { no: "03", title: "Cloud & DevOps", desc: "Infrastructure and delivery pipelines built for scale and reliability.", href: "/services/cloud-devops", kind: "cloud", slug: "cloud-devops" },
+  { no: "04", title: "Product Design", desc: "Digital experiences people actually enjoy using.", href: "/services/ui-ux-design", kind: "design", slug: "ui-ux-design" },
+  { no: "05", title: "Cybersecurity", desc: "Protect applications, infrastructure and data by design.", href: "/services/cybersecurity", kind: "security", slug: "cybersecurity" },
+  { no: "06", title: "Automation", desc: "Remove repetitive work with reliable, monitored workflows.", href: "/services/automation", kind: "automation", slug: "automation" },
 ];
 
 export function ServicesShowcase() {
@@ -90,14 +96,36 @@ export function ServicesShowcase() {
             <div className="sticky top-28 aspect-[4/5] overflow-hidden rounded-2xl shadow-card">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={rows[active].kind}
+                  key={rows[active].slug}
                   initial={{ opacity: 0, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  className="h-full w-full"
+                  className="relative h-full w-full"
                 >
-                  <WorkArt kind={rows[active].kind} label={rows[active].title} />
+                  <SmartImage
+                    src={`/images/services/${rows[active].slug}.jpg`}
+                    alt={rows[active].title}
+                    kind={rows[active].kind}
+                    label={rows[active].title}
+                    className="saturate-[0.8] contrast-[1.04]"
+                  />
+                  {/*
+                    Stock photos arrive in wildly different palettes — greyscale,
+                    warm, pastel — which reads as a slideshow of unrelated stock
+                    rather than one brand. `mix-blend-color` keeps each photo's
+                    luminance but takes the brand hue, so the whole set resolves
+                    to the same blue. The gradient grounds the bottom edge so
+                    every panel ends the same way regardless of its source.
+                  */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-brand-700/30 mix-blend-color"
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"
+                  />
                 </motion.div>
               </AnimatePresence>
             </div>
