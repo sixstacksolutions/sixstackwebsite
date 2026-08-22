@@ -16,6 +16,7 @@ export default function ProjectsPage() {
         title={<>Work that shows how we think</>}
         description="A selection of the kinds of products we build, filterable by category. These are illustrative samples, real case studies drop straight into the same structure."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Projects" }]}
+        image="/images/heroes/projects.jpg"
       />
 
       <section className="py-16 sm:py-24">

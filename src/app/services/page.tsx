@@ -20,6 +20,7 @@ export default function ServicesPage() {
         title={<>Everything you need to design, build and ship software</>}
         description="Bring us a single discipline or the whole problem. Each service is delivered by senior people who care about the details."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Services" }]}
+        image="/images/heroes/services.jpg"
       />
 
       <section className="py-16 sm:py-24">

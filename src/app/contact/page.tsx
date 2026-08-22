@@ -26,6 +26,7 @@ export default function ContactPage() {
         title={<>Let&apos;s build something</>}
         description="Tell us what you're working on, timeline, goals, anything useful. We'll get back to you with honest next steps."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+        image="/images/heroes/contact.jpg"
       />
 
       <section className="py-16 sm:py-24">

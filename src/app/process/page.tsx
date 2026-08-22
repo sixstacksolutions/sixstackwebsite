@@ -17,6 +17,7 @@ export default function ProcessPage() {
         title={<>From first idea to a product in production</>}
         description="A clear, transparent way of working that keeps projects predictable and moving. Seven steps, no black boxes."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Process" }]}
+        image="/images/heroes/process.jpg"
       />
 
       <section className="py-20 sm:py-28">

@@ -18,6 +18,7 @@ export default function TechnologiesPage() {
         title={<>The stack behind the software we ship</>}
         description="We're deliberately technology-agnostic, we choose tools per project. Here's the ecosystem we work in most often, grouped by discipline."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Technologies" }]}
+        image="/images/heroes/technologies.jpg"
       />
 
       {/* marquee band */}

@@ -33,6 +33,7 @@ export default function CareersPage() {
         title={<>Build great software with people who care</>}
         description="We're a small, senior, remote-first studio. When we grow, we grow carefully, with people who value craft and ownership as much as we do."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Careers" }]}
+        image="/images/heroes/careers.jpg"
       />
 
       {/* Perks */}

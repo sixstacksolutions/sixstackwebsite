@@ -36,6 +36,7 @@ export default function AboutPage() {
         title={<>A senior software studio that sweats the details</>}
         description="We're Six Stack Solutions, a compact, full-stack team that designs, builds and scales modern software for teams who care about quality as much as we do."
         breadcrumb={[{ label: "Home", href: "/" }, { label: "About" }]}
+        image="/images/heroes/about.jpg"
       />
 
       {/* Who we are */}
