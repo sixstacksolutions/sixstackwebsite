@@ -1,0 +1,23 @@
+{
+  // Cloudflare Pages Functions run on the Workers runtime, not in a browser and
+  // not in Node. They need Cloudflare's globals (PagesFunction, the Workers
+  // fetch/Response) and must NOT see the DOM lib, or code that only compiles in
+  // a browser would typecheck here and then fail at the edge.
+  //
+  // The root tsconfig excludes this directory for the same reason in reverse.
+  // Typecheck with:  npx tsc --noEmit -p functions
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "types": ["@cloudflare/workers-types"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true
+  },
+  "include": ["**/*.ts"]
+}

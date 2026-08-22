@@ -8,9 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "images": "node scripts/optimize-images.mjs"
+    "images": "node scripts/optimize-images.mjs",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p functions"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.120.0",
     "framer-motion": "^11.11.9",
     "lucide-react": "^0.454.0",
     "next": "14.2.15",
@@ -18,6 +20,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260822.1",
     "@types/node": "^20.16.13",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",

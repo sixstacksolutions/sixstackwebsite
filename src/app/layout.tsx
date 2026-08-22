@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingContact } from "@/components/layout/FloatingContact";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import "./globals.css";
 
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <FloatingContact />
         <WhatsAppButton />
+        <ChatWidget />
         <main id="main">{children}</main>
         <Footer />
       </body>
