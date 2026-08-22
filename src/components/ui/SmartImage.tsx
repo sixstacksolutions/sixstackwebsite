@@ -27,15 +27,25 @@ export function SmartImage({
     return <WorkArt kind={kind} label={label} className={className} />;
   }
 
+  // scripts/optimize-images.mjs writes a .webp beside every source file, so the
+  // WebP path is derived rather than passed in — callers keep referring to the
+  // .jpg and the smaller file is preferred automatically. The <source> is
+  // skipped silently by anything that cannot decode WebP, which falls through
+  // to the original, and only a genuinely missing file reaches onError.
+  const webp = src.replace(/\.(jpe?g|png)$/i, ".webp");
+
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className}`}
-      loading="lazy"
-      decoding="async"
-      onError={() => setFailed(true)}
-    />
+    <picture>
+      {webp !== src && <source srcSet={webp} type="image/webp" />}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt}
+        className={`h-full w-full object-cover ${className}`}
+        loading="lazy"
+        decoding="async"
+        onError={() => setFailed(true)}
+      />
+    </picture>
   );
 }

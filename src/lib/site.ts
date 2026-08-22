@@ -11,6 +11,11 @@ export const site = {
   // --- Contact ---
   email: "sixstacksolutions@gmail.com",
   phone: "03354309966",
+  // WhatsApp, international form with no "+" and no trunk "0" — wa.me rejects
+  // both and fails with an "invalid phone number" page rather than an error.
+  // Local 0307 5620642 -> 92 (Pakistan) + 3075620642.
+  whatsapp: "923075620642",
+  whatsappDisplay: "+92 307 5620642",
   // --- Social (placeholders, set real URLs, or leave as # ) ---
   socials: [
     { label: "GitHub", href: "#", icon: "github" },

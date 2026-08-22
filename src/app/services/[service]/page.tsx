@@ -111,10 +111,10 @@ export default function ServiceDetailPage({
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <div className="rounded-2xl border border-line bg-white p-8">
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white">
-                {Icon && <Icon className="h-6 w-6" />}
-              </div>
+              {/* Same typographic treatment as TechnologyCard — a heading and
+                  a hairline rule instead of a glyph in a rounded blue square. */}
               <h2 className="text-xl font-bold text-ink">What you get</h2>
+              <span aria-hidden className="mt-3 block h-px w-12 bg-brand-600" />
               <ul className="mt-5 space-y-3">
                 {service.deliverables.map((d) => (
                   <li key={d} className="flex items-start gap-2.5 text-sm text-slate-body">

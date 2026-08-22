@@ -40,14 +40,14 @@ export default function TechnologiesPage() {
       <section className="py-16 sm:py-24">
         <div className="container-x">
           <Stagger className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {techCategories.map((cat) => (
+            {techCategories.map((cat, i) => (
               <StaggerItem key={cat.id} className="h-full scroll-mt-28">
                 <div id={cat.id} className="h-full">
                   <TechnologyCard
-                    icon={cat.icon}
                     title={cat.title}
                     description={cat.description}
                     items={cat.items}
+                    index={i}
                   />
                 </div>
               </StaggerItem>

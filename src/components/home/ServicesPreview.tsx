@@ -1,26 +1,9 @@
 import Link from "next/link";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { SmartImage } from "@/components/ui/SmartImage";
-import { type WorkKind } from "@/components/ui/WorkArt";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
+import { kindBySlug } from "@/lib/serviceKinds";
 import { services } from "@/data/services";
-
-/**
- * Which illustration a service falls back to when no photo exists at
- * /images/services/<slug>.jpg. Keyed by slug so a renamed service fails
- * loudly here rather than silently drawing the wrong motif.
- */
-const kindBySlug: Record<string, WorkKind> = {
-  "web-development": "web",
-  "mobile-development": "mobile",
-  "ai-development": "ai",
-  "backend-development": "backend",
-  "ui-ux-design": "design",
-  "cloud-devops": "cloud",
-  automation: "automation",
-  cybersecurity: "security",
-  "software-consulting": "consulting",
-};
 
 export function ServicesPreview() {
   const featured = services.slice(0, 4);

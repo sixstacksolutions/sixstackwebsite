@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
-import { icons } from "@/lib/icons";
+import { SmartImage } from "@/components/ui/SmartImage";
+import { kindBySlug } from "@/lib/serviceKinds";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
@@ -27,7 +28,6 @@ export default function ServicesPage() {
         <div className="container-x">
           <div className="divide-y divide-line">
             {services.map((s, i) => {
-              const Icon = icons[s.icon];
               return (
                 <Reveal key={s.slug}>
                   <article className="group grid gap-8 py-12 lg:grid-cols-[auto_1fr_1fr] lg:gap-12">
@@ -38,8 +38,27 @@ export default function ServicesPage() {
                     </div>
 
                     <div>
-                      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-surface-50 text-brand-600">
-                        {Icon && <Icon className="h-6 w-6" />}
+                      {/* The photograph replaces the icon tile. A glyph in a
+                          bordered square said nothing the heading did not
+                          already say; the picture shows the actual work.
+                          SmartImage keeps the generated illustration as the
+                          fallback for any service without a photo yet. */}
+                      <div className="relative mb-5 aspect-[16/10] max-w-md overflow-hidden rounded-xl">
+                        <SmartImage
+                          src={`/images/services/${s.slug}.jpg`}
+                          alt={s.title}
+                          kind={kindBySlug[s.slug] ?? "web"}
+                          label={s.title}
+                          className="saturate-[0.8] contrast-[1.04] transition-transform duration-700 ease-premium group-hover:scale-[1.05]"
+                        />
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 bg-brand-700/30 mix-blend-color"
+                        />
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent"
+                        />
                       </div>
                       <h2 className="text-2xl font-bold text-ink">{s.title}</h2>
                       <p className="mt-1 font-display text-xs uppercase tracking-[0.16em] text-brand-600">

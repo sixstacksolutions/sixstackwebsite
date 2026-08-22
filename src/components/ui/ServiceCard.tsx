@@ -1,24 +1,22 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { icons, type IconKey } from "@/lib/icons";
+import { SmartImage } from "@/components/ui/SmartImage";
+import { kindBySlug } from "@/lib/serviceKinds";
 import { cn } from "@/lib/cn";
 
 export function ServiceCard({
   slug,
-  icon,
   title,
   short,
   index,
   className,
 }: {
   slug: string;
-  icon: IconKey;
   title: string;
   short: string;
   index?: number;
   className?: string;
 }) {
-  const Icon = icons[icon];
   return (
     <Link
       href={`/services/${slug}`}
@@ -27,13 +25,34 @@ export function ServiceCard({
         className
       )}
     >
-      {typeof index === "number" && (
-        <span className="absolute right-6 top-6 font-display text-xs text-slate-muted/70">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-      )}
-      <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-surface-50 text-brand-600 transition-colors duration-300 group-hover:border-brand-200 group-hover:bg-brand-50">
-        {Icon && <Icon className="h-6 w-6" />}
+      {/*
+        The icon tile is replaced by the work itself. A photograph of the thing
+        being sold says more than an outline glyph in a rounded square, and the
+        glyphs were the tell that made the grid read as generated. SmartImage
+        keeps the old illustration as the fallback, so a service without a photo
+        still renders something deliberate rather than a gap.
+      */}
+      <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-xl">
+        <SmartImage
+          src={`/images/services/${slug}.jpg`}
+          alt={title}
+          kind={kindBySlug[slug] ?? "web"}
+          label={title}
+          className="saturate-[0.8] contrast-[1.04] transition-transform duration-700 ease-premium group-hover:scale-[1.06]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-brand-700/30 mix-blend-color"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent"
+        />
+        {typeof index === "number" && (
+          <span className="absolute left-3 top-3 rounded-md bg-ink/55 px-2 py-1 font-display text-[0.7rem] font-semibold text-white/90 backdrop-blur-sm">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        )}
       </div>
       <h3 className="text-lg font-bold text-ink">{title}</h3>
       <p className="mt-2.5 flex-1 text-sm leading-relaxed text-slate-body">{short}</p>

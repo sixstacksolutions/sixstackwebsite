@@ -34,15 +34,25 @@ export function PageHero({
         onImage ? "bg-ink" : "border-b border-line bg-surface-50"
       )}
     >
-      {onImage ? (
+      {/* Branch on `image` rather than the `onImage` boolean so TypeScript
+          narrows it to a string inside this block. */}
+      {image ? (
         <>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={image}
-            alt=""
-            aria-hidden
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+          {/* Banner is above the fold on every inner page, so it loads eagerly
+              and at high priority — it is the LCP element. WebP comes from
+              scripts/optimize-images.mjs; the JPEG stays as the fallback. */}
+          <picture>
+            <source srcSet={image.replace(/\.(jpe?g|png)$/i, ".webp")} type="image/webp" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={image}
+              alt=""
+              aria-hidden
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </picture>
           {/*
             Two stacked washes rather than one flat overlay. The brand-hued
             `mix-blend-color` pass pulls whatever palette the photograph
