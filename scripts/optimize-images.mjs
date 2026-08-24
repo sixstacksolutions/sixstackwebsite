@@ -26,6 +26,7 @@ const MAX_EDGE = {
   services: 1100, // 4:5 panel, ~450 css wide
   industries: 1100, // 4:3 panel, ~430 css wide
   projects: 1100,
+  team: 1100, // 4:5 headshot card, ~380 css wide
 };
 
 async function* walk(dir) {

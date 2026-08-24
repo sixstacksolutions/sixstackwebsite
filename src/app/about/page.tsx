@@ -3,8 +3,10 @@ import { Award, Rss, Eye, UserCheck, GraduationCap, Boxes } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
+import { SmartImage } from "@/components/ui/SmartImage";
 import { icons } from "@/lib/icons";
 import { services } from "@/data/services";
+import { team } from "@/data/team";
 
 export const metadata: Metadata = {
   title: "About",
@@ -135,25 +137,55 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team / culture (placeholder) */}
+      {/* Founding team */}
       <section className="py-20 sm:py-24">
         <div className="container-x">
           <SectionHeading
-            kicker="Team & culture"
-            title="Small team, high standards"
-            description="We're a close-knit group of engineers and designers who care about craft. This space is ready for real team profiles when you'd like to add them."
+            kicker="Our team"
+            title="Six founders, one team"
+            description="Every one of us co-founded Six Stack Solutions, and every one of us still builds. You work with the people who own the company, not an account layer between you and them."
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[0, 1, 2, 3].map((i) => (
-              <Reveal key={i} delay={i * 0.06}>
-                <div className="rounded-2xl border border-dashed border-line bg-surface-50 p-6">
-                  <div className="h-16 w-16 rounded-full bg-brand-gradient-soft" />
-                  <div className="mt-4 h-3 w-24 rounded bg-line" />
-                  <div className="mt-2 h-2.5 w-16 rounded bg-line" />
-                  <p className="mt-4 text-xs text-slate-muted">
-                    Team member placeholder, easy to replace with real profiles.
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {team.map((m, i) => (
+              <Reveal key={m.photo} delay={(i % 3) * 0.06}>
+                <article className="group h-full overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 ease-premium hover:-translate-y-1 hover:border-brand-200 hover:shadow-card">
+                  {/* 4:5 keeps every headshot the same shape regardless of what
+                      the source photo was cropped to, so the row stays even. */}
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <SmartImage
+                      src={`/images/team/${m.photo}.jpg`}
+                      alt={m.name}
+                      kind="consulting"
+                      label={m.title}
+                      className="saturate-[0.85] transition-transform duration-700 ease-premium group-hover:scale-[1.04]"
+                    />
+                    {/* Lighter wash than the service panels — a brand tint that
+                        works on a data centre turns skin tones grey, so this is
+                        just enough to sit in the same family. */}
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 bg-brand-700/12 mix-blend-color"
+                    />
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 p-5">
+                      <h3 className="font-display text-lg font-bold leading-tight text-white">
+                        {m.name}
+                      </h3>
+                      <p className="mt-1 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-brand-300">
+                        {m.title}
+                      </p>
+                      <p className="mt-0.5 text-[0.7rem] font-medium uppercase tracking-[0.14em] text-white/55">
+                        Co-founder
+                      </p>
+                    </div>
+                  </div>
+                  <p className="px-5 py-4 text-sm leading-relaxed text-slate-body">
+                    {m.focus}
                   </p>
-                </div>
+                </article>
               </Reveal>
             ))}
           </div>
